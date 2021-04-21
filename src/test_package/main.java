@@ -1,14 +1,12 @@
 package test_package;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
-import edu.stanford.nlp.util.StringUtils;
+import org.apache.jena.rdf.model.*;
 import org.jsoup.Jsoup;
-import org.jsoup.internal.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class main {
     public static void main(String[] args) throws IOException {
@@ -60,7 +58,21 @@ public class main {
             }
         }
 
-        System.out.println(tripples);
+        // Jena로 RDF 추출
+        Model model = ModelFactory.createDefaultModel();
+        for(String[] statement : tripples){
+            Resource s = model.createResource("http://subject/"+statement[0]);
+            Property p = model.createProperty("http://predicate/"+statement[1]);
+            RDFNode o = model.createLiteral(statement[2]);
+
+            if(s.hasProperty(p)){
+                s.addProperty(p,model.createResource().addProperty(p,o));
+            }else {
+                s.addProperty(p,o);
+            }
+        }
+        model.write(System.out);
+        //RDFDataMgr.write(System.out, model, Lang.NTRIPLES); // N-TRIPLES 형태로 출력
 
     }
     //map 정렬 메소드
