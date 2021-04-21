@@ -137,5 +137,39 @@ String[] sentences = tagged.split("\\._\\.");
 ### 결과
 ![image](https://user-images.githubusercontent.com/55576129/115531004-3ff6c900-a2cf-11eb-9d03-3f620c3d998f.png)
 
-
 ---
+
+### Jena를 이용한 RDF 추출과정
+
+Jena다운 받고 [https://jena.apache.org/](https://jena.apache.org/)
+
+File-Project Structure-Libraries에 lib 랑 lib-src 전부 추가
+
+빈 모델 만들고 Resource, Property, RDFNode에 각각 subject, predicate, object 매핑해줌
+
+자세한건 Jena reference 참고
+```java
+Model model = ModelFactory.createDefaultModel();
+for(String[] statement : tripples){
+    Resource s = model.createResource("http://subject/"+statement[0]);
+    Property p = model.createProperty("http://predicate/"+statement[1]);
+    RDFNode o = model.createLiteral(statement[2]);
+
+    if(s.hasProperty(p)){
+        s.addProperty(p,model.createResource().addProperty(p,o));
+    }else {
+        s.addProperty(p,o);
+    }
+}    
+```
+### RDF 출력
+```java
+model.write(System.out);
+```
+![image](https://user-images.githubusercontent.com/55576129/115543106-f9f43200-a2db-11eb-8042-92472ac8c645.png)
+
+### N-TRIPLES 형태로 출력
+```java
+RDFDataMgr.write(System.out, model, Lang.NTRIPLES);
+```
+![image](https://user-images.githubusercontent.com/55576129/115543285-29a33a00-a2dc-11eb-9a01-81e26a54882a.png)
