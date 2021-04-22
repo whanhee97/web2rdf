@@ -178,3 +178,25 @@ model.write(System.out);
 RDFDataMgr.write(System.out, model, Lang.NTRIPLES);
 ```
 ![image](https://user-images.githubusercontent.com/55576129/115543285-29a33a00-a2dc-11eb-9a01-81e26a54882a.png)
+
+
+----
+# 더 연구해야될 부분
+
+여기서는 핵심 고유명사를 단순히 빈도수가 가장 높게 나온 고유명사로 정함
+
+![image](https://user-images.githubusercontent.com/55576129/115685882-9c232100-a393-11eb-98d6-973309f107e8.png)
+
+kyung hee university를 검색한 결과는 university가 핵심 고유명사로 나옴
+
+→ 이는 띄어쓰기 별로 나누어 형태소 분석을 했기때문
+
+→ 핵심 고유명사를 선정하는 알고리즘 연구 필요
+
+<br>
+
+트리플 구성을 보면 이상한게 많이보임
+
+→ 단순히 고유명사를 주어로 했을때 그 뒤에 나오는 동사를 동사로 하고 그 뒤에 나오는 고유명사를 object로 선정하였기 때문
+
+→ 주어 동사 목적어를 매핑하는 더 정확한 알고리즘 연구 필요
