@@ -2,12 +2,17 @@
   <library name="lib">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../apache-jena-4.0.0/lib" />
+      <root url="file://$PROJECT_DIR$/../stanford-corenlp-4.2.0" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="file://$PROJECT_DIR$/../apache-jena-4.0.0/lib-src" />
+      <root url="file://$PROJECT_DIR$/../stanford-corenlp-4.2.0" />
+      <root url="file://$PROJECT_DIR$/../stanford-corenlp-4.2.0" />
     </SOURCES>
     <jarDirectory url="file://$PROJECT_DIR$/../apache-jena-4.0.0/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../stanford-corenlp-4.2.0" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/../apache-jena-4.0.0/lib-src" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/../stanford-corenlp-4.2.0" recursive="false" type="SOURCES" />
   </library>
 </component>
